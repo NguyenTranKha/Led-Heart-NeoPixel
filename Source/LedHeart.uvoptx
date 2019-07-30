@@ -202,14 +202,27 @@
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>ClockOSCS,0x0A</ItemText>
+          <ItemText>((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0800))-&gt;CCR3</ItemText>
         </Ww>
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>ClockSystem,0x0A</ItemText>
+          <ItemText>((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0800))-&gt;DMAR</ItemText>
+        </Ww>
+        <Ww>
+          <count>2</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>a</ItemText>
         </Ww>
       </WatchWindow1>
+      <MemoryWindow1>
+        <Mm>
+          <WinNumber>1</WinNumber>
+          <SubType>0</SubType>
+          <ItemText>TIM4-&gt;DMAR</ItemText>
+          <AccSizeX>0</AccSizeX>
+        </Mm>
+      </MemoryWindow1>
       <Tracepoint>
         <THDelay>0</THDelay>
       </Tracepoint>

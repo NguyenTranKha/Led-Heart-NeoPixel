@@ -3,10 +3,16 @@
 #include "stm32f10x_tim.h"
 #include <stdint.h>
 
+#define ADDRESS_DMAR /*TIM4->DMAR*/ 0x4000083C
+
+static uint16_t a[24];
+static uint32_t *b = a;
 static uint32_t ClockOSCS;
 static uint8_t ClockSystem;
 static TIM_OCInitTypeDef TIM_OCStruct;
 static TIM_TimeBaseInitTypeDef TIM_BaseStruct;
+static DMA_InitTypeDef DMA_InitStruct;
+static NVIC_InitTypeDef NVIC_InitStructure;
 
 
 
@@ -27,14 +33,13 @@ Status Init_Clock(void);
 Status Init_GPIO(void);
 Status Init_Clock(void);
 Status Init_PWM(void);
+Status Init_DMA(void);
 Status SendBit_WS2812B(uint16_t value);
 
-static void Delay(void){
-	uint32_t a = 30000000;
+static void Delay(uint32_t a){
 	while(a)
 	{
 		--a;
 	}
-	//SendBit_WS2812B(0);
 }
 
