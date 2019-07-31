@@ -63,7 +63,7 @@ Status Init_PWM()
 	
 	TIM_OC3Init(TIM4, &TIM_OCStruct);
 	
-	TIM_CtrlPWMOutputs(TIM4, ENABLE);
+	//TIM_CtrlPWMOutputs(TIM4, ENABLE);
 	
 	TIM_DMAConfig(TIM4, TIM_DMABase_CCR3, TIM_DMABurstLength_1Transfer);
 	TIM_DMACmd(TIM4, TIM_DMA_Update, ENABLE);
@@ -77,15 +77,15 @@ Status Init_DMA()
 {	
 	for(int i = 0; i <= 23; i++)
 	{
-		if(i < 11)
-			a[i] = 11;
+		if(i < 20)
+			a[i] = 13;
 		else
 			a[i] = 6;
 	}
 	
 	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE); //RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
 	DMA_DeInit(DMA1_Channel5);//DMA_DeInit(DMA1_Channel1);
-	DMA_InitStruct.DMA_PeripheralBaseAddr = (uint32_t)b;
+	DMA_InitStruct.DMA_PeripheralBaseAddr = (uint32_t)a;
 	DMA_InitStruct.DMA_MemoryBaseAddr = (uint32_t)&TIM4->DMAR;
 	DMA_InitStruct.DMA_DIR = DMA_DIR_PeripheralSRC;//DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;
 	DMA_InitStruct.DMA_BufferSize = 48;
@@ -99,14 +99,7 @@ Status Init_DMA()
 	DMA_Init(DMA1_Channel5, &DMA_InitStruct);
 
 	DMA_Cmd(DMA1_Channel5, ENABLE);
-	
 	return Success;
-}
-
-void DMA1_Channel5_IRQHandler(void)
-{
-	GPIO_WriteBit(GPIOC, GPIO_Pin_13, 1);
-	DMA_ClearITPendingBit(DMA1_IT_GL1);
 }
 Status SendBit_WS2812B(uint16_t value)
 {

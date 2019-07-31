@@ -5,11 +5,6 @@ int main(){
 	Init_GPIO();	
 	Init_PWM();
 	Init_DMA();
-	
-	
 	while(1)
-	{
-		
-	}
-	return 0;
+	{};
 };
