@@ -73,22 +73,54 @@ Status Init_PWM()
 	return Success;
 }
 
-Status Init_DMA()
-{	
-	for(int i = 0; i <= 23; i++)
-	{
-		if(i < 20)
-			a[i] = 13;
-		else
-			a[i] = 6;
-	}
+void test(){
 	
+	for(int i = 0; i < 24; i++)
+	{
+		if(i < 15)
+			a[i] = 0x000D0000;
+		else
+			a[i] = 0x00060000;
+	}
+	a[24] = 0;
+}
+
+void test2(){
+	a[0] = 0x00060000; //
+	a[1] = 0x000D0000; //
+	a[2] = 0x00060000;
+	a[3] = 0x000D0000; //
+	a[4] = 0x00060000;//
+	a[5] = 0x000D0000;
+	a[6] = 0x00060000;
+	a[7] = 0x000D0000;
+	a[8] = 0x00060000; //
+	a[9] = 0x000D0000; //
+	a[10] = 0x00060000;
+	a[11] = 0x000D0000; //
+	a[12] = 0x00060000;//
+	a[13] = 0x000D0000;
+	a[14] = 0x00060000;
+	a[15] = 0x000D0000;
+	a[16] = 0x00060000; //
+	a[17] = 0x000D0000; //
+	a[18] = 0x00060000;
+	a[19] = 0x000D0000; //
+	a[20] = 0x00060000;//
+	a[21] = 0x000D0000;
+	a[22] = 0x00060000;
+	a[23] = 0x000D0000;
+	a[24] = 0;
+}
+
+Status Init_DMA()
+{
 	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE); //RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
 	DMA_DeInit(DMA1_Channel5);//DMA_DeInit(DMA1_Channel1);
 	DMA_InitStruct.DMA_PeripheralBaseAddr = (uint32_t)a;
 	DMA_InitStruct.DMA_MemoryBaseAddr = (uint32_t)&TIM4->DMAR;
 	DMA_InitStruct.DMA_DIR = DMA_DIR_PeripheralSRC;//DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;
-	DMA_InitStruct.DMA_BufferSize = 48;
+	DMA_InitStruct.DMA_BufferSize = 50;
 	DMA_InitStruct.DMA_PeripheralInc = DMA_PeripheralInc_Enable;//DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Enable;
 	DMA_InitStruct.DMA_MemoryInc = DMA_MemoryInc_Disable;//DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
 	DMA_InitStruct.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord; //DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord;

@@ -3,7 +3,7 @@
 #include "stm32f10x_tim.h"
 #include <stdint.h>
 
-static uint32_t a[24];
+static uint32_t a[25];
 static uint32_t ClockOSCS;
 static uint8_t ClockSystem;
 static TIM_OCInitTypeDef TIM_OCStruct;
@@ -31,6 +31,8 @@ Status Init_Clock(void);
 Status Init_PWM(void);
 Status Init_DMA(void);
 Status SendBit_WS2812B(uint16_t value);
+void test();
+void test2();
 
 static void Delay(uint32_t a){
 	while(a)
